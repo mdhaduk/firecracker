@@ -354,6 +354,10 @@ pub struct ApiServerMetrics {
     pub process_startup_time_us: SharedStoreMetric,
     /// Measures the cpu's startup time in microseconds.
     pub process_startup_time_cpu_us: SharedStoreMetric,
+    /// Number of failures on API requests triggered by internal errors.
+    pub sync_response_fails: SharedIncMetric,
+    /// Number of timeouts during communication with the VMM.
+    pub sync_vmm_send_timeout_count: SharedIncMetric,
 }
 impl ApiServerMetrics {
     /// Const default construction.
@@ -361,6 +365,8 @@ impl ApiServerMetrics {
         Self {
             process_startup_time_us: SharedStoreMetric::new(),
             process_startup_time_cpu_us: SharedStoreMetric::new(),
+            sync_response_fails: SharedIncMetric::new(),
+            sync_vmm_send_timeout_count: SharedIncMetric::new(),
         }
     }
 }
