@@ -214,7 +214,7 @@ impl AsyncFileEngine {
         if discard_cqes {
             // Drain the completion queue so that we may deallocate the user_data fields.
             while self.do_pop()?.is_some() {}
-        }
+        }   
 
         Ok(())
     }
